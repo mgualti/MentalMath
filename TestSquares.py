@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''Test a human's ability to do mental squaring.'''
 
 # python
@@ -6,7 +6,7 @@ import sys
 from time import sleep
 from random import random
 # pyttsx
-import pyttsx
+import pyttsx3
 
 def main(nQuestions, nDigits, delay):
   '''Entrypoint to the program.'''
@@ -19,14 +19,14 @@ def main(nQuestions, nDigits, delay):
   
   # RUN TEST =======================================================================================
   
-  for question in xrange(nQuestions):
+  for question in range(nQuestions):
     
     x = 0
     while x <= 1: # prevent trivial questions
       x = int(10**nDigits*random())
       y = x * x
     
-    speechEng = pyttsx.init()
+    speechEng = pyttsx3.init()
     speechEng.setProperty("rate", rate)
     speechEng.say(str(x) + " squared")
     speechEng.runAndWait()
@@ -34,12 +34,12 @@ def main(nQuestions, nDigits, delay):
     sleep(delay)
 
     print("Question: {}. {}^2 = {}".format(question+1,x,y))    
-    speechEng = pyttsx.init()
+    speechEng = pyttsx3.init()
     speechEng.setProperty("rate", rate)
     speechEng.say(str(y))
     speechEng.runAndWait()
     del speechEng
-    raw_input("Press [Enter] to continue...")
+    input("Press [Enter] to continue...")
   
 if __name__ == "__main__":
   '''Call main with the appropriate command line arguments.'''

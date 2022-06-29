@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''Test a human's ability to do mental addition.'''
 
 # python
@@ -6,7 +6,7 @@ import sys
 from time import sleep
 from random import random
 # pyttsx
-import pyttsx
+import pyttsx3
 
 def main(nQuestions, nDigitsTop, nDigitsBottom, delay):
   '''Entrypoint to the program.'''
@@ -19,7 +19,7 @@ def main(nQuestions, nDigitsTop, nDigitsBottom, delay):
   
   # RUN TEST =======================================================================================
   
-  for question in xrange(nQuestions):
+  for question in range(nQuestions):
     
     a = 0; b = 0
     while a <= 1 or b <= 1: # prevent trivial questions
@@ -27,7 +27,7 @@ def main(nQuestions, nDigitsTop, nDigitsBottom, delay):
       b = int(10**nDigitsBottom*random())
       c = a + b
     
-    speechEng = pyttsx.init()
+    speechEng = pyttsx3.init()
     speechEng.setProperty("rate", rate)
     speechEng.say(str(a) + " plus " + str(b))
     speechEng.runAndWait()
@@ -35,12 +35,12 @@ def main(nQuestions, nDigitsTop, nDigitsBottom, delay):
     sleep(delay)
 
     print("Question: {}. {} + {} = {}".format(question+1,a,b,c))    
-    speechEng = pyttsx.init()
+    speechEng = pyttsx3.init()
     speechEng.setProperty("rate", rate)
     speechEng.say(str(c))
     speechEng.runAndWait()
     del speechEng
-    raw_input("Press [Enter] to continue...")
+    input("Press [Enter] to continue...")
   
 if __name__ == "__main__":
   '''Call main with the appropriate command line arguments.'''
